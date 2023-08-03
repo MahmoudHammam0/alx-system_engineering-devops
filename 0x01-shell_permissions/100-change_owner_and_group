@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chown vincent:staff --reference .
+sudo chown vincent:staff .
