@@ -11,7 +11,7 @@ do
 		if [ $hours -ne 13 ]; then
 			echo "Hour: $hours";
 		fi
-		min=$(( $min-58 ))
+		min=1
 	else
 		echo "$min";
 		(( min++ ))
