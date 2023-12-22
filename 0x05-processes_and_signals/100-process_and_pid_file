@@ -2,8 +2,8 @@
 #magic file
 echo $$ > /var/run/myscript.pid
 trap 'echo "I hate the kill command"' SIGTERM
-trap 'rm /var/run/myscript.pid; exit' SIGTERM
-trap 'rm /var/run/myscript.pid; exit' SIGQUIT
+trap 'rm -rf /var/run/myscript.pid; exit' SIGTERM
+trap 'rm -rf /var/run/myscript.pid; exit' SIGQUIT
 trap 'echo "Y U no love me?!"' SIGINT
 while true
 do
