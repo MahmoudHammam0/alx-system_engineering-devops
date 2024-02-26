@@ -3,5 +3,8 @@
 apt-get update
 apt-get -y install nginx
 sudo echo "Hello World!" > /var/www/html/index.html
-sudo sed -i "s/}/return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\n}/" /etc/nginx/sites-available/default
+sudo sed -i "/server {/a \
+	    listen 80;\n\
+	    server_name _;\n\
+	    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;" /etc/nginx/sites-available/default
 sudo service nginx restart
