@@ -2,5 +2,5 @@
 #configures a new Ubuntu machine with Nginx web server
 apt-get update
 apt-get -y install nginx
-echo "Hello World!" > /var/www/html/index.html
-service nginx start
+sudo echo "Hello World!" > /var/www/html/index.html
+sudo service nginx restart
