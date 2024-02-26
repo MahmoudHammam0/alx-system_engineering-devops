@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 #configures a new Ubuntu machine with Nginx web server
-sudo apt -y install nginx
-echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
-echo "listen 80 default_server;" >> /etc/nginx/nginx.conf
-sudo kill -s HUP $(cat /var/run/nginx.pid)
+apt-get install -y nginx
+echo "server {
+    listen 80;
+    server_name _;
+    location / {
+    	echo 'HTTP/1.1 200 OK\n\nHello World!';
+    }
+}" > /etc/nginx/sites-available/default
+
+killall -s HUP nginx
