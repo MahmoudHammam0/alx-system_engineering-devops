@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 #configures a new Ubuntu machine with Nginx web server
 apt-get install -y nginx
-echo "server {
-    listen 80;
-    server_name _;
-    location / {
-    	echo 'HTTP/1.1 200 OK\n\nHello World!';
-    }
-}" > /etc/nginx/sites-available/default
-
-killall -s HUP nginx
+echo "Hello World!" > /www/var/html/index.html
+sudo service restart nginx
