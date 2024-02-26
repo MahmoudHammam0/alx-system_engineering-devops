@@ -2,6 +2,6 @@
 #configures a new Ubuntu machine with Nginx web server and redirect with 301
 apt-get update
 apt-get -y install nginx
-sudo echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 sudo sed -i "s#server_name _;#server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permenant;#" /etc/nginx/sites-available/default
 sudo service nginx restart
