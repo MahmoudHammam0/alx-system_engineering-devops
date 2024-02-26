@@ -2,4 +2,3 @@
 #configures a new Ubuntu machine with Nginx web server
 sudo apt -y install nginx
 echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
-sudo kill -s HUP $(cat /var/run/nginx.pid)
