@@ -10,7 +10,7 @@ exec {'update':
 ->file_line { 'add_header':
   path  => '/etc/nginx/nginx.conf',
   match => 'http {',
-  line  => 'http {\n\tadd_header X-Served-By "${hostname}";'
+  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";"
 }
 
 ->exec {'run':
