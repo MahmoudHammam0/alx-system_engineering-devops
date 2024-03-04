@@ -8,6 +8,6 @@ file_line { 'add_header':
   line  => "location / {\n\t\tadd_header X-Served-By \"${hostname}\";"
 }
 
-exec { 'sudo service nginx restart':
-  provider => shell
+exec { 'run':
+  command  => '/usr/sbin/service nginx restart'
 }
