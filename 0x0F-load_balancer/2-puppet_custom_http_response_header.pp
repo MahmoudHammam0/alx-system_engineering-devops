@@ -13,6 +13,6 @@ exec {'update':
   line  => "http {\n\tadd_header X-Served-By \"${hostname}\";"
 }
 
-->exec {'run':
+->exec {'restart':
   command => '/usr/sbin/service nginx restart'
 }
