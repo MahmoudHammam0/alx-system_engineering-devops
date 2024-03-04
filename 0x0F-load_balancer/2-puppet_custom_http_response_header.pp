@@ -4,7 +4,7 @@ exec {'update':
 }
 
 ->package {'nginx':
-  ensure => 'present'
+  ensure => installed
 }
 
 ->file_line { 'add_header':
