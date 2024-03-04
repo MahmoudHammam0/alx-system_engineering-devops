@@ -8,6 +8,6 @@ sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/page_404.html
 error_string="server_name _;\n\terror_page 404 \/page_404.html;\n\tlocation = \/page_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}\n"
 sudo sed -i "s/server_name _;/$error_string/" /etc/nginx/sites-enabled/default
-new_str="\t\tadd_header X-Served-By $hostname;\n\t\ttry_files $uri $uri/ =404;"
-sudo sed -i "s/try_files $uri $uri\/ =404;/$new_str" /etc/nginx/sites-enabled/default
+new_str="\t\tadd_header X-Served-By \$hostname;\n\t\ttry_files \$uri \$uri\/ =404;"
+sudo sed -i "s/try_files \$uri \$uri\/ =404;/$new_str" /etc/nginx/sites-enabled/default
 sudo service nginx restart
