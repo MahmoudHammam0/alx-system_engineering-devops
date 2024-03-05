@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-#configures a nginx server to listen to port 80
-sudo service nginx start
