@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # write a Bash script that will display information about the subdomains
 DNSFunc() {
-	recordtype=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | tr "	" " " | cut -d" " -f4)
-	dest=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | tr "	" " " | cut -d" " -f5)
+	recordtype=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | tr "\t" " " | cut -d" " -f4)
+	dest=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | tr "\t" " " | cut -d" " -f5)
 	awk -v subdomain="$2" -v recordtype="$recordtype" -v dest="$dest" 'BEGIN { print "The subdomain " subdomain " is a " recordtype " record and points to " dest }'
 }
 
