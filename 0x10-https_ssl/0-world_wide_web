@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # write a Bash script that will display information about the subdomains
 DNSFunc() {
-	if [ $2 == "www" ]; then
-		recordtype=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | cut -d"	" -f5)
-		dest=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | cut -d"	" -f6)
-	else
+	if [ $2 == "lb-01" ] || [ $2 == "www" ]; then
 		recordtype=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | cut -d"	" -f4)
 		dest=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | cut -d"	" -f5)
+	else
+		recordtype=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | cut -d"	" -f3)
+		dest=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | cut -d"	" -f4)
 	fi
 	awk -v subdomain="$2" -v recordtype="$recordtype" -v dest="$dest" 'BEGIN { print "The subdomain " subdomain " is a " recordtype " record and points to " dest }'
 }
