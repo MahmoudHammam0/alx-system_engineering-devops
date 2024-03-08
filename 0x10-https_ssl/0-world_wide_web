@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # write a Bash script that will display information about the subdomains
 DNSFunc() {
-	DNS=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | tr "\t" " ")
+	DNS=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | tr "\t" " ")
 	echo "$2 $DNS" | awk '{print "The subdomain " $1 " is a " $5 " record and points to " $6}'
 }
 
