@@ -21,4 +21,4 @@ if __name__ == "__main__":
           .format(emp_name, no_done, no_tasks))
     for task in tasks_req.json():
         if task['completed'] is True:
-            print(" \t{}".format(task['title']))
+            print("     {}".format(task['title']))
