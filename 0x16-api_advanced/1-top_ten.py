@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 'Top Ten module'
-import json
 import requests
 
 
