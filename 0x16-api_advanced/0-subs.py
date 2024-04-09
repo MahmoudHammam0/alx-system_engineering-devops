@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-'How many subs? module'
+""" function that queries the Reddit API """
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """
-    function that queries the Reddit API and returns the number of subscribers
-    (not active users, total subscribers) for a given subreddit.
+    """ function that queries the Reddit API and returns the number of
+        subscribers (not active users, total subscribers) for a given
+        subreddit. If an invalid subreddit is given, the function returns 0
     """
     CLIENT_ID = 'zL8evAsF03DzVk_TArVH3g'
     SECRET_KEY = 'FT7BTQs-WLEtZEOlH_2mE2QEQ8CV2g'
