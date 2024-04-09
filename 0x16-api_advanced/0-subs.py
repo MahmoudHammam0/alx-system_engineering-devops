@@ -10,7 +10,7 @@ def number_of_subscribers(subreddit):
     """returns the number of subscribers for a given subreddit"""
     user_agent = {'User-agent': 'Google Chrome'}
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    response = get(url, headers=user_agent)
+    response = get(url, headers=user_agent, allow_redirects=False)
     results = response.json()
 
     try:
