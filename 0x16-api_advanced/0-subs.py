@@ -19,13 +19,9 @@ def number_of_subscribers(subreddit):
     token = res.json()['access_token']
     headers['Authorization'] = 'bearer {}'.format(token)
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    response = requests.get(url, auth=auth, data=data, headers=headers,
-                            allow_redirects=False)
-    if response.status_code != 200:
+    req = requests.get(url, auth=auth, data=data, headers=headers,
+                       allow_redirects=False)
+    if req.status_code != 200:
         return 0
-    data = response.json()
-    if 'data' not in data:
-        return 0
-    if 'subscribers' not in data.get('data'):
-        return 0
+    data = req.json()
     return data['data']['subscribers']
