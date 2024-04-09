@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 'Top Ten module'
+import json
 import requests
 
 
@@ -18,7 +19,12 @@ def top_ten(subreddit):
                         auth=auth, data=data, headers=headers)
     token = res.json()['access_token']
     headers['Authorization'] = 'bearer {}'.format(token)
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     req = requests.get(url, auth=auth, data=data, headers=headers,
                        allow_redirects=False)
-    print(req.json())
+    if req.status_code == 200:
+        res = req.json()['data']['children']
+        for i in range(10):
+            print(res[i]['data']['title'])
+    else:
+        print(None)
