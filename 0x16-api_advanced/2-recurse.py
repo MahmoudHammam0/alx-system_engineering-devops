@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-'Top Ten module'
+'2. Recurse it!'
 import requests
 
 
-def recurse(subreddit, hot_list=[], i=0):
+def recurse(subreddit, hot_list=[], next=None):
     'returns a list of titles of all hot articles for a given subreddit'
     clientId = 'J2BkSoEGIIGkNRe4aVwAnw'
     secretKey = 'sKObr2oIPuhq88fqo2U1_TDeOu42eA'
@@ -18,15 +18,18 @@ def recurse(subreddit, hot_list=[], i=0):
             auth=auth, data=data, headers=headers)
     token = res.json()['access_token']
     headers['Authorization'] = 'bearer {}'.format(token)
+    params = {'after': next}
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     req = requests.get(url, auth=auth, data=data, headers=headers,
-            allow_redirects=False)
+            allow_redirects=False, params=params)
     if req.status_code != 200:
         return None
-    res = req.json()['data']['children']
-    if len(hot_list) < len(res):
-        hot_list.append(res[i]['data']['title'])
-        i += 1
-        return recurse(subreddit, hot_list, i)
+    data = req.json()['data']
+    articles = data['children']
+    next = data['after']
+    for article in articles:
+        hot_list.append(article['data']['title'])
+    if next:
+        return recurse(subreddit, hot_list, next)
     else:
         return hot_list
