@@ -15,13 +15,13 @@ def recurse(subreddit, hot_list=[], next=None):
     }
     headers = {'User-Agent': 'MyAPI/0.0.1'}
     res = requests.post('https://www.reddit.com/api/v1/access_token',
-            auth=auth, data=data, headers=headers)
+                        auth=auth, data=data, headers=headers)
     token = res.json()['access_token']
     headers['Authorization'] = 'bearer {}'.format(token)
     params = {'after': next}
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     req = requests.get(url, auth=auth, data=data, headers=headers,
-            allow_redirects=False, params=params)
+                       allow_redirects=False, params=params)
     if req.status_code != 200:
         return None
     data = req.json()['data']
