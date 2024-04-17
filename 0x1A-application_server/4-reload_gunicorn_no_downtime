@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-MASTER_PID=$(pgrep gunicorn)
-kill -HUP "$MASTER_PID"
+SERVICE_NAME="gunicorn"
+sudo systemctl reload $SERVICE_NAME || sudo systemctl restart $SERVICE_NAME
