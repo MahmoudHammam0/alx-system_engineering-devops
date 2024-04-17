@@ -1,3 +1,11 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-pgrep gunicorn | xargs kill -HUP
+worker_pids=$(pgrep -f "gunicorn")
+
+# Send a reload signal to each worker
+for pid in $worker_pids
+do
+    echo "Reloading Gunicorn worker: $pid"
+    kill -HUP "$pid"
+done
+
