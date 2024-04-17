@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+MASTER_PID=$(pgrep -f 'gunicorn: master')
+kill -HUP $MASTER_PID

@@ -1,0 +1,9 @@
+server {
+        listen 80;
+        server_name localhost 127.0.0.1 54.164.91.151;
+
+        location /airbnb-onepage/ {
+                include proxy_params;
+                proxy_pass http://localhost:5000;
+        }
+}
