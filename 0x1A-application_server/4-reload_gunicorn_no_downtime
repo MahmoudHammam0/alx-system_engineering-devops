@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-MASTER_PID=$(pgrep -f 'gunicorn: master')
-kill -HUP "$MASTER_PID"
+MASTER_PID=$(pgrep gunicorn)
+kill -s HUP "$MASTER_PID"
