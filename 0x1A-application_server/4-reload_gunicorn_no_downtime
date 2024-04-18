@@ -1,3 +1,15 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-pkill -HUP gunicorn
+master_pid=$(pgrep -f '[g]unicorn')
+
+if [ -z "$master_pid" ]; then
+    echo "No Gunicorn process found"
+    exit 1
+fi
+
+echo "Reloading Gunicorn gracefully..."
+
+# Send SIGUSR2 signal to the master process to gracefully reload the workers
+kill -s SIGUSR2 "$master_pid"
+
+echo "Reload complete"
