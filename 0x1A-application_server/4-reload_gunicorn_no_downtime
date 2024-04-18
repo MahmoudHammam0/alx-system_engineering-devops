@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-master_pid=$(pgrep -f 'gunicorn')
-pkill -HUP -P "$master_pid"
+ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
