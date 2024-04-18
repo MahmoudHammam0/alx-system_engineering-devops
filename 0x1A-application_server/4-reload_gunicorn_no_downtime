@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-sudo systemctl reload gunicorn.service
+master_pid=$(pgrep -f 'gunicorn')
+pkill -HUP -P "$master_pid"
