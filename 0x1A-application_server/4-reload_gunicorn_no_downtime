@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 #reload Gunicorn in a graceful way.
-systemctl status gunicorn |  sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d' ' | xargs kill -HUP
+PID=$(pgrep gunicorn)
+
+# Reload Gunicorn gracefully
+kill -s HUP $PID
